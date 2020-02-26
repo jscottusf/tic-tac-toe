@@ -114,15 +114,22 @@ def get_computer_move(board, player):
         ((board[1] == "X" and board[8] == "X") and board[7] == " "):
         return 7
 
-    while True:
-        move = random.randrange(1,10,2)
-        #if move is blank go ahead and return otherise try again
+    #while True:
+    #pick any random odd number except for five
+    #not sure if there is a more intuitive way to do this in Python, but it works
+    #problem was if it picked 5, it would then pick an even number, which made the computer vulnerable to losing
+    move = random.randrange(1,10,2)
+    if move == 5:
+        move = random.randrange(1,5,2)
+    if move == 5:
+        move = random.randrange(7,9,2)
+    #if move is blank go ahead and return otherise try again
+    if board[move] == " ":
+        return move
+    else:
+        move = random.randint(1,10)
         if board[move] == " ":
             return move
-        else:
-            move = random.randint(1,10)
-            if board[move] == " ":
-                return move
 
 
 #Main loop
